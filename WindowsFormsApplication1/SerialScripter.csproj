@@ -162,6 +162,7 @@
     <None Include="Images\Copy.png" />
     <None Include="Images\Cut.png" />
     <None Include="Images\Paste.png" />
+    <None Include="Resources\Icon1.ico" />
     <Content Include="serialScripter.ico" />
   </ItemGroup>
   <ItemGroup>

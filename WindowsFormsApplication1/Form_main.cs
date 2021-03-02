@@ -1,15 +1,11 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO.Ports;
-using System.Threading;
 
 namespace WindowsFormsApplication1
 {
@@ -26,11 +22,10 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void tabControl_scripts_selected(object sender, TabControlEventArgs e)
+        private void TabControl_scripts_selected(object sender, TabControlEventArgs e)
         {
             string rtBoxName = tabControl_scripts.SelectedTab.Name + "_rtBox";
-            RichTextBox rtBoxObj = this.Controls.Find(rtBoxName, true).FirstOrDefault() as RichTextBox;
-            if (rtBoxObj == null)
+            if (!(this.Controls.Find(rtBoxName, true).FirstOrDefault() is RichTextBox))
                 MakeRichTextBox();
         }
 
@@ -51,7 +46,7 @@ namespace WindowsFormsApplication1
             rtb.ContextMenuStrip = cMenu_script;
         }
 
-        private void tabControl_scripts_drawItem(object sender, DrawItemEventArgs e)
+        private void TabControl_scripts_drawItem(object sender, DrawItemEventArgs e)
         {
             RectangleF tabTextArea = RectangleF.Empty;
             tabTextArea.Width = e.Bounds.Width;
@@ -64,15 +59,17 @@ namespace WindowsFormsApplication1
                 e.Graphics.DrawImage(bmp, tabTextArea.X + tabTextArea.Width - 15, 8, 10, 10);
             }
             string str = tabControl_scripts.TabPages[e.Index].Text;
-            StringFormat stringformat = new StringFormat();
-            stringformat.Alignment = StringAlignment.Center;
+            StringFormat stringformat = new StringFormat
+            {
+                Alignment = StringAlignment.Center
+            };
             using (SolidBrush brush = new SolidBrush(tabControl_scripts.TabPages[e.Index].ForeColor))
             {
                 e.Graphics.DrawString(str, e.Font, brush, tabTextArea, stringformat);
             }
         }
 
-        private void tabControl_scripts_mouseDown(object sender, MouseEventArgs e)
+        private void TabControl_scripts_mouseDown(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < this.tabControl_scripts.TabPages.Count; i++)
             {
@@ -85,7 +82,7 @@ namespace WindowsFormsApplication1
                     {
                         if (tabControl_scripts.TabCount == 1)
                         {
-                            tabCount = tabCount + 1;
+                            tabCount += 1;
                             tabControl_scripts.TabPages.Add("tabPage_" + tabCount, "Script " + tabCount);
                             tabControl_scripts.SelectedIndex = tabControl_scripts.TabCount - 1;
                             this.tabControl_scripts.TabPages.RemoveAt(i);
@@ -273,9 +270,9 @@ namespace WindowsFormsApplication1
             rTxt_console.Text += displayData;
         }
 
-        private void rTxt_console_keyDown(object sender, KeyEventArgs e)
+        private void RTxt_console_keyDown(object sender, KeyEventArgs e)
         {
-            int consoleTextLength = rTxt_console.TextLength;
+            _ = rTxt_console.TextLength;
 
             if (e.Control)
             {
@@ -298,7 +295,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void rTxt_console_keyClick(object sender, KeyPressEventArgs e)
+        private void RTxt_console_keyClick(object sender, KeyPressEventArgs e)
         {
             if (serialConnection.IsOpen)
             {
@@ -311,30 +308,22 @@ namespace WindowsFormsApplication1
                 e.Handled = true;
         }
 
-        private char[] AsciiToChar(string input)
+        private void TBtn_new_Click(object sender, EventArgs e)
         {
-            char[] comBuffer = new char[input.Length];
-            for (int i = 0; i < input.Length; i++)
-            {
-                comBuffer[i] = (char)Convert.ToChar(input.Substring(i, 1));
-            }
-            return comBuffer;
-        }
-
-        private void tBtn_new_Click(object sender, EventArgs e)
-        {
-            tabCount = tabCount + 1;
+            tabCount += 1;
             tabControl_scripts.TabPages.Add("tabPage_" + tabCount, "Script " + tabCount);
             tabControl_scripts.SelectedIndex = tabControl_scripts.TabCount - 1;
         }
 
-        private void tBtn_open_Click(object sender, EventArgs e)
+        private void TBtn_open_Click(object sender, EventArgs e)
         {
-            OpenFileDialog od = new OpenFileDialog();
-            od.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*";
-            od.FilterIndex = 2;
+            OpenFileDialog od = new OpenFileDialog
+            {
+                Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*",
+                FilterIndex = 2,
 
-            od.Multiselect = true;
+                Multiselect = true
+            };
 
             od.ShowDialog();
 
@@ -345,7 +334,7 @@ namespace WindowsFormsApplication1
                     string fileName = Path.GetFileNameWithoutExtension(file);
                     if (fileName.Length > 8)
                         fileName = fileName.Substring(0, 8)+"...";
-                    tabCount = tabCount + 1;
+                    tabCount += 1;
                     tabControl_scripts.TabPages.Add("tabPage_" + tabCount, fileName);
                     tabControl_scripts.SelectedIndex = tabControl_scripts.TabCount - 1;
                     MakeRichTextBox();
@@ -360,13 +349,15 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void tBtn_save_con_Click(object sender, EventArgs e)
+        private void TBtn_save_con_Click(object sender, EventArgs e)
         {
             string text = rTxt_console.Text;
 
-            SaveFileDialog sd = new SaveFileDialog();
-            sd.Filter = "Text File|*.txt|All Files|*.*";
-            sd.FilterIndex = 2;
+            SaveFileDialog sd = new SaveFileDialog
+            {
+                Filter = "Text File|*.txt|All Files|*.*",
+                FilterIndex = 2
+            };
             sd.ShowDialog();
 
             if (sd.FileName != "")
@@ -378,16 +369,18 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void bw_saveConsole(object sender, DoWorkEventArgs e)
+        public void Bw_saveConsole(object sender, DoWorkEventArgs e)
         {
             
         }
 
-        private void tBtn_save_Click(object sender, EventArgs e)
+        private void TBtn_save_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sd = new SaveFileDialog();
-            sd.Filter = "Text File|*.txt|All Files|*.*";
-            sd.FilterIndex = 2;
+            SaveFileDialog sd = new SaveFileDialog
+            {
+                Filter = "Text File|*.txt|All Files|*.*",
+                FilterIndex = 2
+            };
             sd.ShowDialog();
 
             string rtBoxName = tabControl_scripts.SelectedTab.Name + "_rtBox";
@@ -402,7 +395,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void tBtn_receiveAsAscii_Click(object sender, EventArgs e)
+        private void TBtn_receiveAsAscii_Click(object sender, EventArgs e)
         {
             if (tBtn_receiveAsAscii.Checked == false)
             {
@@ -411,7 +404,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void tBtn_receiveAsHex_Click(object sender, EventArgs e)
+        private void TBtn_receiveAsHex_Click(object sender, EventArgs e)
         {
             if (tBtn_receiveAsHex.Checked == false)
             {
@@ -420,7 +413,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void tBtn_sendAsAscii_Click(object sender, EventArgs e)
+        private void TBtn_sendAsAscii_Click(object sender, EventArgs e)
         {
             if (tBtn_sendAsAscii.Checked == false)
             {
@@ -429,7 +422,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void tBtn_sendAsHex_Click(object sender, EventArgs e)
+        private void TBtn_sendAsHex_Click(object sender, EventArgs e)
         {
             if (tBtn_sendAsHex.Checked == false)
             {
@@ -438,13 +431,13 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void bw_closeSerialConnection(object sender, DoWorkEventArgs e)
+        private void Bw_closeSerialConnection(object sender, DoWorkEventArgs e)
         {
            while (serialConnection.IsOpen)
                 serialConnection.Close();
         }
 
-        private void bw_closeSerialCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Bw_closeSerialCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             tBtn_connect.Checked = false;
             ss_CD.BackColor = Color.Transparent;
@@ -456,7 +449,7 @@ namespace WindowsFormsApplication1
             ss_TD.BackColor = Color.Transparent;
         }
 
-        private void tBtn_connect_Click(object sender, EventArgs e)
+        private void TBtn_connect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -465,8 +458,8 @@ namespace WindowsFormsApplication1
                 if (serialConnection.IsOpen)
                 {
                     bw_receive = new BackgroundWorker();
-                    bw_receive.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_closeSerialCompleted);
-                    bw_receive.DoWork += bw_closeSerialConnection;
+                    bw_receive.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_closeSerialCompleted);
+                    bw_receive.DoWork += Bw_closeSerialConnection;
                     bw_receive.RunWorkerAsync(serialConnection);
                 }
                 else
@@ -572,11 +565,12 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void tBtn_send_Click(object sender, EventArgs e)
+        private void TBtn_send_Click(object sender, EventArgs e)
         {
             if (tBtn_send.Checked)
             {
                 tBtn_send.Checked = false;
+                bw_send.WorkerSupportsCancellation = true;
                 bw_send.CancelAsync();
             }
             else
@@ -591,17 +585,21 @@ namespace WindowsFormsApplication1
                 switch (tBtn_sendAsHex.Checked)
                 {
                     case false:
-                        bw_send = new BackgroundWorker();
-                        bw_send.WorkerSupportsCancellation = true;
-                        bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_runWorkerCompleted);
-                        bw_send.DoWork += bw_sendAscii;
+                        bw_send = new BackgroundWorker
+                        {
+                            WorkerSupportsCancellation = true
+                        };
+                        bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_runWorkerCompleted);
+                        bw_send.DoWork += Bw_sendAscii;
                         bw_send.RunWorkerAsync(rtBoxObj.Text);
                         break;
                     case true:
-                        bw_send = new BackgroundWorker();
-                        bw_send.WorkerSupportsCancellation = true;
-                        bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_runWorkerCompleted);
-                        bw_send.DoWork += bw_sendHex;
+                        bw_send = new BackgroundWorker
+                        {
+                            WorkerSupportsCancellation = true
+                        };
+                        bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_runWorkerCompleted);
+                        bw_send.DoWork += Bw_sendHex;
                         bw_send.RunWorkerAsync(rtBoxObj.Text);
                         break;
                     default:
@@ -611,13 +609,13 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void rTxt_console_TextChanged(object sender, EventArgs e)
+        private void RTxt_console_TextChanged(object sender, EventArgs e)
         {
             if (rTxt_console.TextLength >= 2047483640)
                 rTxt_console.Text = rTxt_console.Text.Substring(rTxt_console.TextLength - 2047483639, rTxt_console.TextLength);
         }
 
-        private void bw_sendHex(object sender, DoWorkEventArgs e)
+        private void Bw_sendHex(object sender, DoWorkEventArgs e)
         {
             string hex = (string)e.Argument;
             hex = hex.Replace(" ", "");
@@ -644,7 +642,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void bw_sendAscii(object sender, DoWorkEventArgs e)
+        private void Bw_sendAscii(object sender, DoWorkEventArgs e)
         {
             string ascii = (string)e.Argument;
             char[] asciiChar = new char[1];
@@ -678,7 +676,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void bw_runWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Bw_runWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             statusStrip2.Invoke((MethodInvoker)delegate
             {
@@ -691,85 +689,85 @@ namespace WindowsFormsApplication1
             tBtn_send.Checked = false;
         }
 
-        private void tBtn_clearConsole_Click(object sender, EventArgs e)
+        private void TBtn_clearConsole_Click(object sender, EventArgs e)
         {
             rTxt_console.Clear();
         }
 
-        private void cMenu_scriptCut_Click(object sender, EventArgs e)
+        private void CMenu_scriptCut_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
             {
                 Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
                 ((TextBox)this.ActiveControl).SelectedText = "";
             }
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
             {
                 Clipboard.SetDataObject(((RichTextBox)this.ActiveControl).SelectedText, true);
                 ((RichTextBox)this.ActiveControl).SelectedText = "";
             }
         }
         
-        private void cMenu_scriptCopy_Click(object sender, EventArgs e)
+        private void CMenu_scriptCopy_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 Clipboard.SetDataObject(((RichTextBox)this.ActiveControl).SelectedText, true);
         }
 
-        private void cMenu_scriptPaste_Click(object sender, EventArgs e)
+        private void CMenu_scriptPaste_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 ((TextBox)this.ActiveControl).SelectedText = Clipboard.GetText();
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 ((RichTextBox)this.ActiveControl).SelectedText = Clipboard.GetText();
         }
 
-        private void cMenu_scriptDelete_Click(object sender, EventArgs e)
+        private void CMenu_scriptDelete_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 ((TextBox)this.ActiveControl).SelectedText = "";
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 ((RichTextBox)this.ActiveControl).SelectedText = "";
         }
 
-        private void cMenu_scriptSelectAll_Click(object sender, EventArgs e)
+        private void CMenu_scriptSelectAll_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 ((TextBox)this.ActiveControl).SelectAll();
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 ((RichTextBox)this.ActiveControl).SelectAll();
         }
 
-        private void cMenu_consoleCut_Click(object sender, EventArgs e)
+        private void CMenu_consoleCut_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
             {
                 Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
                 ((TextBox)this.ActiveControl).SelectedText = "";
             }
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
             {
                 Clipboard.SetDataObject(((RichTextBox)this.ActiveControl).SelectedText, true);
                 ((RichTextBox)this.ActiveControl).SelectedText = "";
             }
         }
 
-        private void cMenu_consoleCopy_Click(object sender, EventArgs e)
+        private void CMenu_consoleCopy_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 Clipboard.SetDataObject(((RichTextBox)this.ActiveControl).SelectedText, true);
         }
 
-        private void cMenu_consolePaste_Click(object sender, EventArgs e)
+        private void CMenu_consolePaste_Click(object sender, EventArgs e)
         {
            if (bw_send.IsBusy != true)
            {
@@ -779,9 +777,9 @@ namespace WindowsFormsApplication1
                 string text = Clipboard.GetText();
 
                 bw_send = new BackgroundWorker();
-                bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_runWorkerCompleted);
+                bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_runWorkerCompleted);
                 bw_send.WorkerSupportsCancellation = true;
-                bw_send.DoWork += bw_sendAscii;
+                bw_send.DoWork += Bw_sendAscii;
                 bw_send.RunWorkerAsync(text);
             }
 
@@ -790,44 +788,44 @@ namespace WindowsFormsApplication1
             
         }
 
-        private void cMenu_consoleSelectAll_Click(object sender, EventArgs e)
+        private void CMenu_consoleSelectAll_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 ((TextBox)this.ActiveControl).SelectAll();
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 ((RichTextBox)this.ActiveControl).SelectAll();
         }
 
-        private void cMenu_consoleClear_Click(object sender, EventArgs e)
+        private void CMenu_consoleClear_Click(object sender, EventArgs e)
         {
             rTxt_console.Clear();
         }
 
-        private void tBtn_cut_Click(object sender, EventArgs e)
+        private void TBtn_cut_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
             {
                 Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
                 ((TextBox)this.ActiveControl).SelectedText = "";
             }
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
             {
                 Clipboard.SetDataObject(((RichTextBox)this.ActiveControl).SelectedText, true);
                 ((RichTextBox)this.ActiveControl).SelectedText = "";
             }
         }
 
-        private void tBtn_copy_Click(object sender, EventArgs e)
+        private void TBtn_copy_Click(object sender, EventArgs e)
         {
-            if (this.ActiveControl is TextBox)
+            if (ActiveControl is TextBox)
                 Clipboard.SetDataObject(((TextBox)this.ActiveControl).SelectedText, true);
 
-            if (this.ActiveControl is RichTextBox)
+            if (ActiveControl is RichTextBox)
                 Clipboard.SetDataObject(((RichTextBox)this.ActiveControl).SelectedText, true);
         }
 
-        private void tBtn_paste_Click(object sender, EventArgs e)
+        private void TBtn_paste_Click(object sender, EventArgs e)
         {
             if (this.ActiveControl == rTxt_console)
             {
@@ -839,9 +837,9 @@ namespace WindowsFormsApplication1
                     string text = Clipboard.GetText();
 
                     bw_send = new BackgroundWorker();
-                    bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_runWorkerCompleted);
+                    bw_send.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Bw_runWorkerCompleted);
                     bw_send.WorkerSupportsCancellation = true;
-                    bw_send.DoWork += bw_sendAscii;
+                    bw_send.DoWork += Bw_sendAscii;
                     bw_send.RunWorkerAsync(text);
                 }
 
@@ -850,10 +848,10 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                if (this.ActiveControl is TextBox)
+                if (ActiveControl is TextBox)
                     ((TextBox)this.ActiveControl).SelectedText = Clipboard.GetText();
 
-                if (this.ActiveControl is RichTextBox)
+                if (ActiveControl is RichTextBox)
                     ((RichTextBox)this.ActiveControl).SelectedText = Clipboard.GetText();
             }
         }

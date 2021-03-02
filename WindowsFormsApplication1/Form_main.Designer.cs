@@ -145,7 +145,7 @@
             this.tBtn_new.Name = "tBtn_new";
             this.tBtn_new.Size = new System.Drawing.Size(23, 22);
             this.tBtn_new.Text = "New Script";
-            this.tBtn_new.Click += new System.EventHandler(this.tBtn_new_Click);
+            this.tBtn_new.Click += new System.EventHandler(this.TBtn_new_Click);
             // 
             // tBtn_open
             // 
@@ -155,7 +155,7 @@
             this.tBtn_open.Name = "tBtn_open";
             this.tBtn_open.Size = new System.Drawing.Size(23, 22);
             this.tBtn_open.Text = "Open Script";
-            this.tBtn_open.Click += new System.EventHandler(this.tBtn_open_Click);
+            this.tBtn_open.Click += new System.EventHandler(this.TBtn_open_Click);
             // 
             // tBtn_save
             // 
@@ -165,7 +165,7 @@
             this.tBtn_save.Name = "tBtn_save";
             this.tBtn_save.Size = new System.Drawing.Size(23, 22);
             this.tBtn_save.Text = "Save Script";
-            this.tBtn_save.Click += new System.EventHandler(this.tBtn_save_Click);
+            this.tBtn_save.Click += new System.EventHandler(this.TBtn_save_Click);
             // 
             // tBtn_save_con
             // 
@@ -175,7 +175,7 @@
             this.tBtn_save_con.Name = "tBtn_save_con";
             this.tBtn_save_con.Size = new System.Drawing.Size(23, 22);
             this.tBtn_save_con.Text = "Save Console";
-            this.tBtn_save_con.Click += new System.EventHandler(this.tBtn_save_con_Click);
+            this.tBtn_save_con.Click += new System.EventHandler(this.TBtn_save_con_Click);
             // 
             // toolStripSeparator1
             // 
@@ -190,7 +190,7 @@
             this.tBtn_cut.Name = "tBtn_cut";
             this.tBtn_cut.Size = new System.Drawing.Size(23, 22);
             this.tBtn_cut.Text = "Cut";
-            this.tBtn_cut.Click += new System.EventHandler(this.tBtn_cut_Click);
+            this.tBtn_cut.Click += new System.EventHandler(this.TBtn_cut_Click);
             // 
             // tBtn_copy
             // 
@@ -200,7 +200,7 @@
             this.tBtn_copy.Name = "tBtn_copy";
             this.tBtn_copy.Size = new System.Drawing.Size(23, 22);
             this.tBtn_copy.Text = "Copy";
-            this.tBtn_copy.Click += new System.EventHandler(this.tBtn_copy_Click);
+            this.tBtn_copy.Click += new System.EventHandler(this.TBtn_copy_Click);
             // 
             // tBtn_paste
             // 
@@ -210,7 +210,7 @@
             this.tBtn_paste.Name = "tBtn_paste";
             this.tBtn_paste.Size = new System.Drawing.Size(23, 22);
             this.tBtn_paste.Text = "Paste";
-            this.tBtn_paste.Click += new System.EventHandler(this.tBtn_paste_Click);
+            this.tBtn_paste.Click += new System.EventHandler(this.TBtn_paste_Click);
             // 
             // tBtn_clearConsole
             // 
@@ -220,7 +220,7 @@
             this.tBtn_clearConsole.Name = "tBtn_clearConsole";
             this.tBtn_clearConsole.Size = new System.Drawing.Size(23, 22);
             this.tBtn_clearConsole.Text = "Clear Console";
-            this.tBtn_clearConsole.Click += new System.EventHandler(this.tBtn_clearConsole_Click);
+            this.tBtn_clearConsole.Click += new System.EventHandler(this.TBtn_clearConsole_Click);
             // 
             // toolStripSeparator7
             // 
@@ -252,7 +252,7 @@
             this.tBtn_receiveAsAscii.Name = "tBtn_receiveAsAscii";
             this.tBtn_receiveAsAscii.Size = new System.Drawing.Size(23, 22);
             this.tBtn_receiveAsAscii.Text = "Receive Ascii";
-            this.tBtn_receiveAsAscii.Click += new System.EventHandler(this.tBtn_receiveAsAscii_Click);
+            this.tBtn_receiveAsAscii.Click += new System.EventHandler(this.TBtn_receiveAsAscii_Click);
             // 
             // tBtn_receiveAsHex
             // 
@@ -262,7 +262,7 @@
             this.tBtn_receiveAsHex.Name = "tBtn_receiveAsHex";
             this.tBtn_receiveAsHex.Size = new System.Drawing.Size(23, 22);
             this.tBtn_receiveAsHex.Text = "Receive Hex";
-            this.tBtn_receiveAsHex.Click += new System.EventHandler(this.tBtn_receiveAsHex_Click);
+            this.tBtn_receiveAsHex.Click += new System.EventHandler(this.TBtn_receiveAsHex_Click);
             // 
             // tBtn_sendAsAscii
             // 
@@ -274,7 +274,7 @@
             this.tBtn_sendAsAscii.Name = "tBtn_sendAsAscii";
             this.tBtn_sendAsAscii.Size = new System.Drawing.Size(23, 22);
             this.tBtn_sendAsAscii.Text = "Send Ascii";
-            this.tBtn_sendAsAscii.Click += new System.EventHandler(this.tBtn_sendAsAscii_Click);
+            this.tBtn_sendAsAscii.Click += new System.EventHandler(this.TBtn_sendAsAscii_Click);
             // 
             // tBtn_sendAsHex
             // 
@@ -284,7 +284,7 @@
             this.tBtn_sendAsHex.Name = "tBtn_sendAsHex";
             this.tBtn_sendAsHex.Size = new System.Drawing.Size(23, 22);
             this.tBtn_sendAsHex.Text = "Send Hex";
-            this.tBtn_sendAsHex.Click += new System.EventHandler(this.tBtn_sendAsHex_Click);
+            this.tBtn_sendAsHex.Click += new System.EventHandler(this.TBtn_sendAsHex_Click);
             // 
             // toolStripSeparator4
             // 
@@ -299,7 +299,7 @@
             this.tBtn_connect.Name = "tBtn_connect";
             this.tBtn_connect.Size = new System.Drawing.Size(23, 22);
             this.tBtn_connect.Text = "Connect";
-            this.tBtn_connect.Click += new System.EventHandler(this.tBtn_connect_Click);
+            this.tBtn_connect.Click += new System.EventHandler(this.TBtn_connect_Click);
             // 
             // tBtn_send
             // 
@@ -309,7 +309,7 @@
             this.tBtn_send.Name = "tBtn_send";
             this.tBtn_send.Size = new System.Drawing.Size(23, 22);
             this.tBtn_send.Text = "Transmit Script";
-            this.tBtn_send.Click += new System.EventHandler(this.tBtn_send_Click);
+            this.tBtn_send.Click += new System.EventHandler(this.TBtn_send_Click);
             // 
             // toolStripSeparator5
             // 
@@ -603,9 +603,9 @@
             this.tabControl_scripts.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl_scripts.TabIndex = 3;
             this.tabControl_scripts.Tag = "";
-            this.tabControl_scripts.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl_scripts_drawItem);
-            this.tabControl_scripts.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl_scripts_selected);
-            this.tabControl_scripts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl_scripts_mouseDown);
+            this.tabControl_scripts.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControl_scripts_drawItem);
+            this.tabControl_scripts.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl_scripts_selected);
+            this.tabControl_scripts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TabControl_scripts_mouseDown);
             // 
             // tabPage1
             // 
@@ -646,28 +646,28 @@
             this.cMenu_scriptCut.Name = "cMenu_scriptCut";
             this.cMenu_scriptCut.Size = new System.Drawing.Size(122, 22);
             this.cMenu_scriptCut.Text = "Cut";
-            this.cMenu_scriptCut.Click += new System.EventHandler(this.cMenu_scriptCut_Click);
+            this.cMenu_scriptCut.Click += new System.EventHandler(this.CMenu_scriptCut_Click);
             // 
             // cMenu_scriptCopy
             // 
             this.cMenu_scriptCopy.Name = "cMenu_scriptCopy";
             this.cMenu_scriptCopy.Size = new System.Drawing.Size(122, 22);
             this.cMenu_scriptCopy.Text = "Copy";
-            this.cMenu_scriptCopy.Click += new System.EventHandler(this.cMenu_scriptCopy_Click);
+            this.cMenu_scriptCopy.Click += new System.EventHandler(this.CMenu_scriptCopy_Click);
             // 
             // cMenu_scriptPaste
             // 
             this.cMenu_scriptPaste.Name = "cMenu_scriptPaste";
             this.cMenu_scriptPaste.Size = new System.Drawing.Size(122, 22);
             this.cMenu_scriptPaste.Text = "Paste";
-            this.cMenu_scriptPaste.Click += new System.EventHandler(this.cMenu_scriptPaste_Click);
+            this.cMenu_scriptPaste.Click += new System.EventHandler(this.CMenu_scriptPaste_Click);
             // 
             // cMenu_scriptDelete
             // 
             this.cMenu_scriptDelete.Name = "cMenu_scriptDelete";
             this.cMenu_scriptDelete.Size = new System.Drawing.Size(122, 22);
             this.cMenu_scriptDelete.Text = "Delete";
-            this.cMenu_scriptDelete.Click += new System.EventHandler(this.cMenu_scriptDelete_Click);
+            this.cMenu_scriptDelete.Click += new System.EventHandler(this.CMenu_scriptDelete_Click);
             // 
             // toolStripSeparator2
             // 
@@ -679,7 +679,7 @@
             this.cMenu_scriptSelectAll.Name = "cMenu_scriptSelectAll";
             this.cMenu_scriptSelectAll.Size = new System.Drawing.Size(122, 22);
             this.cMenu_scriptSelectAll.Text = "Select All";
-            this.cMenu_scriptSelectAll.Click += new System.EventHandler(this.cMenu_scriptSelectAll_Click);
+            this.cMenu_scriptSelectAll.Click += new System.EventHandler(this.CMenu_scriptSelectAll_Click);
             // 
             // Console
             // 
@@ -703,9 +703,9 @@
             this.rTxt_console.Size = new System.Drawing.Size(753, 244);
             this.rTxt_console.TabIndex = 2;
             this.rTxt_console.Text = "";
-            this.rTxt_console.TextChanged += new System.EventHandler(this.rTxt_console_TextChanged);
-            this.rTxt_console.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rTxt_console_keyDown);
-            this.rTxt_console.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rTxt_console_keyClick);
+            this.rTxt_console.TextChanged += new System.EventHandler(this.RTxt_console_TextChanged);
+            this.rTxt_console.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RTxt_console_keyDown);
+            this.rTxt_console.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RTxt_console_keyClick);
             // 
             // cMenu_console
             // 
@@ -726,21 +726,21 @@
             this.cMenu_consoleCut.Name = "cMenu_consoleCut";
             this.cMenu_consoleCut.Size = new System.Drawing.Size(147, 22);
             this.cMenu_consoleCut.Text = "Cut";
-            this.cMenu_consoleCut.Click += new System.EventHandler(this.cMenu_consoleCut_Click);
+            this.cMenu_consoleCut.Click += new System.EventHandler(this.CMenu_consoleCut_Click);
             // 
             // cMenu_consoleCopy
             // 
             this.cMenu_consoleCopy.Name = "cMenu_consoleCopy";
             this.cMenu_consoleCopy.Size = new System.Drawing.Size(147, 22);
             this.cMenu_consoleCopy.Text = "Copy";
-            this.cMenu_consoleCopy.Click += new System.EventHandler(this.cMenu_consoleCopy_Click);
+            this.cMenu_consoleCopy.Click += new System.EventHandler(this.CMenu_consoleCopy_Click);
             // 
             // cMenu_consolePaste
             // 
             this.cMenu_consolePaste.Name = "cMenu_consolePaste";
             this.cMenu_consolePaste.Size = new System.Drawing.Size(147, 22);
             this.cMenu_consolePaste.Text = "Paste";
-            this.cMenu_consolePaste.Click += new System.EventHandler(this.cMenu_consolePaste_Click);
+            this.cMenu_consolePaste.Click += new System.EventHandler(this.CMenu_consolePaste_Click);
             // 
             // cMenu_consoleDelete
             // 
@@ -758,7 +758,7 @@
             this.cMenu_consoleSelectAll.Name = "cMenu_consoleSelectAll";
             this.cMenu_consoleSelectAll.Size = new System.Drawing.Size(147, 22);
             this.cMenu_consoleSelectAll.Text = "Select All";
-            this.cMenu_consoleSelectAll.Click += new System.EventHandler(this.cMenu_consoleSelectAll_Click);
+            this.cMenu_consoleSelectAll.Click += new System.EventHandler(this.CMenu_consoleSelectAll_Click);
             // 
             // toolStripSeperator7
             // 
@@ -770,7 +770,7 @@
             this.cMenu_consoleClear.Name = "cMenu_consoleClear";
             this.cMenu_consoleClear.Size = new System.Drawing.Size(147, 22);
             this.cMenu_consoleClear.Text = "Clear Console";
-            this.cMenu_consoleClear.Click += new System.EventHandler(this.cMenu_consoleClear_Click);
+            this.cMenu_consoleClear.Click += new System.EventHandler(this.CMenu_consoleClear_Click);
             // 
             // Form_main
             // 
